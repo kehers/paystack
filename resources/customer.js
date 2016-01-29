@@ -1,0 +1,44 @@
+'use strict';
+
+var root = '/customer';
+
+module.exports = {
+
+  /*
+  Create customer
+  @param: first_name, last_name, email, phone
+  */
+  create: {
+      method: 'post',
+      endpoint: root,
+      params: ['first_name', 'last_name', 'email', 'phone']
+    },
+
+  /*
+  Get customer
+  */
+  get: {
+      method: 'get',
+      endpoint: [root, '/{id}'].join(''),
+      args: ['id']
+  },
+
+  /*
+  List customers
+  */
+  list: {
+      method: 'get',
+      endpoint: root
+    },
+
+  /*
+  Update customer
+  @param: first_name, last_name, email, phone
+  */
+  update: {
+      method: 'put',
+      endpoint: [root, '/{id}'].join(''),
+      params: ['first_name', 'last_name', 'email', 'phone'],
+      args: ['id']
+    }
+};

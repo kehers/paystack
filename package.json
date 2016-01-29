@@ -1,0 +1,20 @@
+{
+  "name": "paystack-node",
+  "version": "1.0.0",
+  "description": "Paystack API wrapper",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "payment",
+    "API",
+    "naira",
+    "paystack"
+  ],
+  "author": "Opeyemi Obembe <kehers@gmail.com> (http://obem.be/opeyemi)",
+  "license": "MIT",
+  "dependencies": {
+    "request": "^2.67.0"
+  }
+}
