@@ -1,6 +1,6 @@
 {
   "name": "paystack",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Paystack API wrapper",
   "main": "index.js",
   "scripts": {
@@ -16,5 +16,14 @@
   "license": "MIT",
   "dependencies": {
     "request": "^2.67.0"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kehers/paystack.git"
+  },
+  "bugs": {
+    "url": "https://github.com/kehers/paystack/issues"
+  },
+  "homepage": "https://github.com/kehers/paystack"
 }
