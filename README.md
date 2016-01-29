@@ -1,18 +1,18 @@
-## paystack-node
+## paystack
 
 A Nodejs API wrapper for [Paystack](https://paystack.co/).
 
 ### Installation
 
 ```
-npm install paystack-node
+npm install paystack
 ```
 
 ### Usage
 
 ```js
 // Require the library
-var paystack = require('./index')('secret_key');
+var paystack = require('paystack')('secret_key');
 
 // Make a call to the resource/method
 // paystack.{resource}.{method}

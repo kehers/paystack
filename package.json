@@ -1,5 +1,5 @@
 {
-  "name": "paystack-node",
+  "name": "paystack",
   "version": "1.0.0",
   "description": "Paystack API wrapper",
   "main": "index.js",
