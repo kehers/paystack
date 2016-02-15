@@ -19,7 +19,16 @@ module.exports = {
   charge: {
       method: 'post',
       endpoint: [root, '/charge_authorization'].join(''),
-      params: ['authorization_code', 'email', 'amount']
+      params: ['reference', 'authorization_code', 'email', 'amount']
+    },
+
+  /*
+  Charge token
+  */
+  chargeToken: {
+      method: 'post',
+      endpoint: [root, '/charge_token'].join(''),
+      params: ['reference', 'token', 'email', 'amount']
     },
 
   /*
