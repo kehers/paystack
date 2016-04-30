@@ -14,6 +14,15 @@ module.exports = {
     },
 
   /*
+  Export transactions
+  */
+  export: {
+      method: 'post',
+      endpoint: [root, '/export'].join(''),
+      params: ['from', 'to', 'settled', 'payment_page']
+    },
+
+  /*
   Charge authorization
   */
   charge: {
