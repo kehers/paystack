@@ -38,5 +38,14 @@ module.exports = {
       endpoint: [root, '/{id}'].join(''),
       params: ['name', 'description', 'amount', 'active'],
       args: ['id']
-    }
+    },
+
+    /*
+    Check slug availability
+    */
+    checkSlug: {
+        method: 'get',
+        endpoint: [root, '/check_slug_availability/{slug}'].join(''),
+        args: ['slug']
+      }
 };
