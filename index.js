@@ -16,6 +16,7 @@ var resources = {
   transaction: require('./resources/transaction'),
   page: require('./resources/page'),
   subscription: require('./resources/subscription')
+  subaccount: require('./resources/subaccount')
 }
 
 function Paystack(key) {

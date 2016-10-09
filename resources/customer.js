@@ -40,5 +40,15 @@ module.exports = {
       endpoint: [root, '/{id}'].join(''),
       params: ['first_name', 'last_name', 'email', 'phone'],
       args: ['id']
+    },
+
+  /*
+  White/Blacklist customer
+  @param: customer id/code, risk_action ('allow' - to whitelist, 'deny' - to blacklist)
+  */
+  setRiskAction: {
+      method: 'post',
+      endpoint: [root, '/set_risk_action'].join(''),
+      params: ['customer', 'risk_action']
     }
 };
