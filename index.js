@@ -102,23 +102,21 @@ Paystack.prototype = {
       // Make request
       var options = {
         url: endpoint,
+        json: true,
         method: method.toUpperCase(),
         headers: {
           'Authorization': ['Bearer ', this.key].join('')
         }
       }
 
-      if (body) {
+      if (body)
         options.body = body;
-        options.json = true;
-      }
 
       if (qs)
         options.qs = qs;
 
-      //console.log(options);
-
       request(options, function(error, response, body) {
+
         // return body
         if (callback){
 

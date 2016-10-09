@@ -1,10 +1,10 @@
 {
   "name": "paystack",
-  "version": "1.1.0",
+  "version": "1.3.0",
   "description": "Paystack API wrapper",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "env KEY={TEST_SECRET_KEY} ./node_modules/.bin/mocha ./test/*.js --reporter spec --timeout 5000"
   },
   "keywords": [
     "payment",
@@ -15,6 +15,8 @@
   "author": "Opeyemi Obembe <kehers@gmail.com> (http://obem.be/opeyemi)",
   "license": "MIT",
   "dependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.1.0",
     "request": "^2.67.0"
   },
   "devDependencies": {},

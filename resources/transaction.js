@@ -17,7 +17,7 @@ module.exports = {
   Export transactions
   */
   export: {
-      method: 'post',
+      method: 'get',
       endpoint: [root, '/export'].join(''),
       params: ['from', 'to', 'settled', 'payment_page']
     },
