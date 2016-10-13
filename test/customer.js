@@ -68,5 +68,26 @@ describe("Paystack Customers", function() {
       done();
     });
   });
+
+  //Whitelist Customer
+  /*
+  setRiskAction integration not available
+  on test integration
+  it("should whitelist customer", function(done) {
+    paystack.customer.setRiskAction({
+      "customer": customer_id,
+      "risk_action": "allow"
+    }, function(error, body) {
+
+      if (error)
+        return done(error);
+
+      expect(body).to.have.property('data');
+      expect(body.data).to.have.property('risk_action');
+
+      done();
+    });
+  });
+  */
 });
 
