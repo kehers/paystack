@@ -15,11 +15,12 @@
   "author": "Opeyemi Obembe <kehers@gmail.com> (http://obem.be/opeyemi)",
   "license": "MIT",
   "dependencies": {
-    "chai": "^3.5.0",
-    "mocha": "^3.1.0",
     "request": "^2.67.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.1.0"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/kehers/paystack.git"
