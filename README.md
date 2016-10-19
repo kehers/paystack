@@ -74,7 +74,24 @@ paystack.transactions.list({
   - get
   - list
   - update
-
+- page
+  - create
+  - get
+  - list
+  - update
+- subscription
+  - create
+  - disable
+  - enable
+  - get
+  - list
+- subaccount
+  - create
+  - get
+  - list
+  - listBanks
+  - update
+  
 ### Tests
 
 To run tests, add your Paystack test secret key to `package.json`. (The test line should look something like this: `env KEY=sk_test_1a68ac96a0171fb72111a24295d8d31d41c28eed ./node_modules/.bin/mocha...`). Now run:
