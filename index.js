@@ -60,7 +60,6 @@ Paystack.prototype = {
      
       if (argsInEndpoint) {
         l = argsInEndpoint.length;
-        l
         // Do we have one or more?
         if (l > 0) {
           // Confirm resource declaration good
