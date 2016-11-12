@@ -10,7 +10,7 @@ module.exports = {
   create: {
       method: 'post',
       endpoint: root,
-      params: ['customer', 'plan', 'authorization']
+      params: ['customer*', 'plan*', 'authorization']
     },
 
   /*
@@ -19,7 +19,7 @@ module.exports = {
   disable: {
       method: 'post',
       endpoint: root,
-      params: ['code', 'token']
+      params: ['code*', 'token*']
     },
 
   /*
@@ -28,7 +28,7 @@ module.exports = {
   enable: {
       method: 'post',
       endpoint: root,
-      params: ['code', 'token']
+      params: ['code*', 'token*']
     },
 
   /*
