@@ -11,7 +11,7 @@ module.exports = {
   create: {
       method: 'post',
       endpoint: root,
-      params: ['first_name', 'last_name', 'email', 'phone']
+      params: ['first_name', 'last_name', 'email*', 'phone']
     },
 
   /*
@@ -49,6 +49,6 @@ module.exports = {
   setRiskAction: {
     method: 'post',
     endpoint: [root, '/set_risk_action'].join(''),
-    params: ['customer', 'risk_action']
+    params: ['customer*', 'risk_action']
   }
 };

@@ -10,7 +10,7 @@ module.exports = {
   create: {
       method: 'post',
       endpoint: root,
-      params: ['name', 'description', 'amount', 'interval', 'send_invoices', 'send_sms', 'hosted_page', 'hosted_page_url', 'hosted_page_summary', 'currency']
+      params: ['name*', 'description', 'amount*', 'interval*', 'send_invoices', 'send_sms', 'hosted_page', 'hosted_page_url', 'hosted_page_summary', 'currency']
     },
 
   /*

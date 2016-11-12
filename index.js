@@ -7,7 +7,7 @@ Paystack API wrapper
 
 var
     request = require('request')
-    , root = 'https://api.paystack.co'
+    ,root = 'https://api.paystack.co'
 ;
 
 var resources = {
@@ -31,33 +31,57 @@ function Paystack(key) {
 Paystack.prototype = {
 
   extend:  function(params) {
-
-    return (function() {
-
+  	// This looks more sane.
+  	var self = this;
+    
+    return function() {
+	  
       // Convert argument to array
       var args = new Array(arguments.length);
       var l = args.length;
       for(var i = 0; i < l; ++i) {
         args[i] = arguments[i];
       }
-
-      // Check for callback
-      var callback;
-      if (l > 0) {
-        l--;
-        // I expect it to be the last argument
-        if (args[l].constructor === Function)
-          callback = args[l];
-        args.splice(l, 1);
-      }
-
+	
+      // Check for callback & Pull it out from the array
+      var callback = l > 0 && typeof args.slice(l-1)[0] === "function" ? args.splice(l-1)[0] : "undefined"; 
+     
       var body, qs;
-      var method = params.method;
-      // todo: Validate possible values of method (get, post, put...)
+      
+      // quick fix - method checking 
+      var method = params.method in {"get":'', "post":'', "put":''}
+      			   ? params.method
+      			   : (function () { throw new Error("Method not Allowed! - Resource declaration error") })()
       var endpoint = [root, params.endpoint].join('');
+	  
+	  // Checking for required params;
+	  if(params.params) {
 
-      // Get arguments in endpoint => {id} in customer/{id}
+	  	var paramList = params.params;
+	 
+	  	// Pull body passed
+	  	var body = args.length === 2 ? args[1] : args[0];
+	  	paramList.filter(function(item, index, array) {
+	  		if(item.indexOf("*") === -1) {
+	  			// Not required
+	  			return;
+	  		}
+	  		item = item.replace("*", "");
+	  		
+	  		if(!(item in body)) {
+	  			throw new Error("Required Parameters Ommited - " + item);
+	  		}
+	  		return;
+	  		
+	  	});
+	  }
+	  
+	  
+	  
+      // Get arguments in endpoint e.g {id} in customer/{id} and pull
+      // out from array
       var argsInEndpoint = endpoint.match(/{[^}]+}/g);
+     
       if (argsInEndpoint) {
         l = argsInEndpoint.length;
         // Do we have one or more?
@@ -70,6 +94,7 @@ Paystack.prototype = {
 
           // Confirm user passed the argument to method
           // and replace in endpoint
+          
           var match, index;
           for (var i=0;i<l;i++) {
             match = argsInEndpoint[i].replace(/\W/g, '');
@@ -88,7 +113,7 @@ Paystack.prototype = {
           }
         }
       }
-
+		
       // Add post/put/[delete?] body
       if (args[0]) {
         if (method == 'post' || method == 'put') {
@@ -106,7 +131,7 @@ Paystack.prototype = {
         json: true,
         method: method.toUpperCase(),
         headers: {
-          'Authorization': ['Bearer ', this.key].join('')
+          'Authorization': ['Bearer ', self.key].join('')
         }
       }
 
@@ -115,7 +140,7 @@ Paystack.prototype = {
 
       if (qs)
         options.qs = qs;
-
+	
       request(options, function(error, response, body) {
 
         // return body
@@ -131,14 +156,17 @@ Paystack.prototype = {
         }
       });
 
-    }).bind(this); // bind, because access to Paystack object
+    }
   },
 
   importResources: function() {
     var anon;
+    // Looping over all resources
     for (var j in resources) {
-      anon = function(){};
-      for(var i in resources[j]) {
+      // Creating a surrogate function
+      anon = function(){};	
+      // Looping over the properties of each resource
+      for(var i in resources[j]) {	
         anon.prototype[i] = this.extend(resources[j][i]);
       }
       Paystack.prototype[j] = new anon();
