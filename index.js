@@ -45,7 +45,7 @@ Paystack.prototype = {
 	
       // Check for callback & Pull it out from the array
       var callback = l > 0 && typeof args.slice(l-1)[0] === "function" ? args.splice(l-1)[0] : "undefined"; 
-      
+     
       var body, qs;
       
       // quick fix - method checking 
@@ -53,6 +53,30 @@ Paystack.prototype = {
       			   ? params.method
       			   : (function () { throw new Error("Method not Allowed! - Resource declaration error") })()
       var endpoint = [root, params.endpoint].join('');
+	  
+	  // Checking for required params;
+	  if(params.params) {
+
+	  	var paramList = params.params;
+	 
+	  	// Pull body passed
+	  	var body = args.length === 2 ? args[1] : args[0];
+	  	paramList.filter(function(item, index, array) {
+	  		if(item.indexOf("*") === -1) {
+	  			// Not required
+	  			return;
+	  		}
+	  		item = item.replace("*", "");
+	  		
+	  		if(!(item in body)) {
+	  			throw new Error("Required Parameters Ommited - " + item);
+	  		}
+	  		return;
+	  		
+	  	});
+	  }
+	  
+	  
 	  
       // Get arguments in endpoint e.g {id} in customer/{id} and pull
       // out from array
