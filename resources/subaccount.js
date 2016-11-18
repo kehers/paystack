@@ -11,7 +11,7 @@ module.exports = {
   create: {
       method: 'post',
       endpoint: root,
-      params: ['business_name', 'settlement_bank', 'account_number', 'percentage_charge']
+      params: ['business_name*', 'settlement_bank*', 'account_number*', 'percentage_charge*']
     },
 
   /*
