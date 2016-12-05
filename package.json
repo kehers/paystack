@@ -1,10 +1,10 @@
 {
   "name": "paystack",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "Paystack API wrapper",
   "main": "index.js",
   "scripts": {
-    "test": "env KEY={TEST_SECRET_KEY} ./node_modules/.bin/mocha ./test/*.js --reporter spec --timeout 5000"
+    "test": "./node_modules/.bin/mocha ./test/*.js --reporter spec --timeout 5000"
   },
   "keywords": [
     "payment",
