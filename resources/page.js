@@ -10,7 +10,7 @@ module.exports = {
   create: {
       method: 'post',
       endpoint: root,
-      params: ['name', 'description', 'amount']
+      params: ['name*', 'description', 'amount']
     },
 
   /*
@@ -38,5 +38,14 @@ module.exports = {
       endpoint: [root, '/{id}'].join(''),
       params: ['name', 'description', 'amount', 'active'],
       args: ['id']
-    }
+    }, 
+   
+   /*
+   Check Slug Avaliability
+   */
+  slug: {
+  	 method: 'get', 
+  	 endpoint: [root, '/check_slug_availability'].join(''),
+  	 params: ['slug*'] 	
+  }
 };

@@ -10,7 +10,7 @@ module.exports = {
   initialize: {
       method: 'post',
       endpoint: [root, '/initialize'].join(''),
-      params: ['reference', 'amount', 'email', 'plan']
+      params: ['reference', 'amount*', 'email*', 'plan']
     },
 
   /*
@@ -28,7 +28,7 @@ module.exports = {
   charge: {
       method: 'post',
       endpoint: [root, '/charge_authorization'].join(''),
-      params: ['reference', 'authorization_code', 'email', 'amount']
+      params: ['reference', 'authorization_code*', 'email*', 'amount*']
     },
 
   /*
@@ -37,7 +37,7 @@ module.exports = {
   chargeToken: {
       method: 'post',
       endpoint: [root, '/charge_token'].join(''),
-      params: ['reference', 'token', 'email', 'amount']
+      params: ['reference', 'token*', 'email', 'amount']
     },
 
   /*
