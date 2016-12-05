@@ -1,4 +1,4 @@
-## paystack
+## paystack ![Build status](https://travis-ci.org/kehers/paystack.svg?branch=master)
 
 A Nodejs API wrapper for [Paystack](https://paystack.co/).
 
