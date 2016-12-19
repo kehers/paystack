@@ -81,7 +81,6 @@ Paystack.prototype = {
       // Get arguments in endpoint e.g {id} in customer/{id} and pull
       // out from array
       var argsInEndpoint = endpoint.match(/{[^}]+}/g);
-     
       if (argsInEndpoint) {
         l = argsInEndpoint.length;
         // Do we have one or more?
@@ -141,19 +140,21 @@ Paystack.prototype = {
       if (qs)
         options.qs = qs;
 	
-      request(options, function(error, response, body) {
-
-        // return body
-        if (callback){
-
-          // Error from API??
-          if (!body.status) {
-            error = body;
-            body = null;
-          }
-
-          return callback(error, body);
-        }
+	request(options, function(error, response, body) {
+    	// request module error as not been previously handled properly.
+    	// To see this error try running this module without internet connection
+        if(!error) {
+        	if(callback){
+        		if(response.statusCode > 201) {
+        			error = body;
+        			body = null;
+        		}
+        		        	
+				return callback(error, body);
+			}
+        	// gc would throw response away
+         }
+        throw new Error(error);
       });
 
     }
