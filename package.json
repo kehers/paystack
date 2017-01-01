@@ -1,10 +1,10 @@
 {
-  "name": "paystack",
-  "version": "1.4.1",
-  "description": "Paystack API wrapper",
+  "name": "node-paystack",
+  "version": "1.0.0",
+  "description": "Promisified Paystack API wrapper",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/.bin/mocha ./test/plan.js --reporter spec --timeout 8000"
+    "test": "env KEY=sk_test_1a68ac96a0171fb72111a24295d8d31d41c28eed ./node_modules/.bin/mocha ./test/*.js --reporter spec --timeout 8000"
   },
   "keywords": [
     "payment",
@@ -12,7 +12,7 @@
     "naira",
     "paystack"
   ],
-  "author": "Opeyemi Obembe <kehers@gmail.com> (http://obem.be/opeyemi)",
+  "author": "Okonkwo Sylvester <theslyguy@icloud.com> (http://slyg.uy/)",
   "license": "MIT",
   "dependencies": {
     "promise": "^7.1.1",

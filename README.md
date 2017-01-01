@@ -1,11 +1,11 @@
 ## paystack ![Build status](https://travis-ci.org/kehers/paystack.svg?branch=master)
 
-Promisified version of the original paystack API wrapper for [Paystack](https://paystack.co/).
+A promisified version of the original paystack API wrapper for [Paystack](https://paystack.co/).
 
 ### Installation
 
 ```
-npm install paystack
+npm install node-paystack
 ```
 
 ### Usage
@@ -19,6 +19,16 @@ var paystack = require('paystack')('secret_key');
 paystack.customer.list(function(error, body) {
   console.log(error);
   console.log(body);
+});
+```
+OR
+```js
+paystack.customer.list()
+.then(function(body) {
+  console.log(body);
+})
+.catch(function(error) {
+  console.log(error);
 });
 ```
 
@@ -36,6 +46,20 @@ paystack.plan.create({
   console.log(body);
 });
 ```
+OR
+```js
+paystack.plan.create({
+  name: 'API demo',
+  amount: 10000,
+  interval: 'monthly'
+})
+.then(function(body) {
+  console.log(body);
+})
+.catch(function(error) {
+  console.log(error);
+});
+```
 
 For GET, you can pass the required ID as string and optional parameters as an optioal object argument.
 
@@ -45,6 +69,16 @@ paystack.plan.get(90, function(error, body) {
   console.log(body);
 });
 ```
+OR
+```js
+paystack.plan.get(90)
+.then(function(body) {
+  console.log(body);
+})
+.catch(function(error) {
+  console.log(error);
+});
+```
 
 ```js
 paystack.transactions.list({
@@ -52,6 +86,18 @@ paystack.transactions.list({
 }, function(error, body) {
   console.log(error);
   console.log(body);
+});
+```
+OR
+```js
+paystack.transactions.list({
+  perPage: 20
+})
+.then(function(body) {
+  console.log(body);
+})
+.catch(function(error) {
+  console.log(error);
 });
 ```
 
