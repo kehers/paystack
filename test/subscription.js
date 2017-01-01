@@ -84,4 +84,3 @@ describe("Paystack Subscriptions", function() {
     });
   });
 });
-

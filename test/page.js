@@ -67,4 +67,3 @@ describe("Paystack Pages", function() {
     });
   });
 });
-
