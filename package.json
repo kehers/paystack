@@ -4,7 +4,7 @@
   "description": "Paystack API wrapper",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/.bin/mocha ./test/*.js --reporter spec --timeout 5000"
+    "test": "./node_modules/.bin/mocha ./test/plan.js --reporter spec --timeout 8000"
   },
   "keywords": [
     "payment",
@@ -15,18 +15,20 @@
   "author": "Opeyemi Obembe <kehers@gmail.com> (http://obem.be/opeyemi)",
   "license": "MIT",
   "dependencies": {
-    "request": "^2.67.0"
+    "promise": "^7.1.1",
+    "request": "^2.79.0",
+    "request-promise": "^4.1.1"
   },
   "devDependencies": {
     "chai": "^3.5.0",
-    "mocha": "^3.1.0"
+    "mocha": "^3.2.0"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/kehers/paystack.git"
+    "url": "https://github.com/theslyone/node-paystack.git"
   },
   "bugs": {
-    "url": "https://github.com/kehers/paystack/issues"
+    "url": "https://github.com/theslyone/node-paystack/issues"
   },
-  "homepage": "https://github.com/kehers/paystack"
+  "homepage": "https://github.com/theslyone/node-paystack"
 }

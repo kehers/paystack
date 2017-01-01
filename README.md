@@ -1,6 +1,6 @@
 ## paystack ![Build status](https://travis-ci.org/kehers/paystack.svg?branch=master)
 
-A Nodejs API wrapper for [Paystack](https://paystack.co/).
+Promisified version of the original paystack API wrapper for [Paystack](https://paystack.co/).
 
 ### Installation
 
@@ -61,7 +61,7 @@ paystack.transactions.list({
   - create
   - get
   - list
-  - update 
+  - update
 - transaction
   - initialize
   - charge
@@ -91,7 +91,7 @@ paystack.transactions.list({
   - list
   - listBanks
   - update
-  
+
 ### Tests
 
 To run tests, add your Paystack test secret key to `package.json`. (The test line should look something like this: `env KEY=sk_test_1a68ac96a0171fb72111a24295d8d31d41c28eed ./node_modules/.bin/mocha...`). Now run:
