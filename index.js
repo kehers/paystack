@@ -24,7 +24,6 @@ function Paystack(key) {
   if (!(this instanceof Paystack)) {
     return new Paystack(key);
   }
-
   this.key = key;
   this.importResources();
 }
