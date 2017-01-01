@@ -1,4 +1,4 @@
-var paystack = require('../index')('sk_test_8fc4d1da50f1bab3ee8d41f2b210eed0fed602e0')//(process.env.KEY)
+var paystack = require('../index')(process.env.KEY)
   , mocha = require('mocha')
   , expect = require('chai').expect
   ;
