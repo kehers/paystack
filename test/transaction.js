@@ -10,35 +10,32 @@ describe("Paystack Transaction", function() {
   // Init Transaction
   it("should initialize a transaction", function(done) {
     paystack.transaction.initialize({
-        email: 'kehers@gmail.com',
+        email: 'theslyguy@icloud.com',
         amount: 500000
-      }, function(error, body) {
-
-      if (error)
+      })
+      .then(function(body){
+        expect(body).to.have.property('data');
+        expect(body.data).to.have.property('authorization_url');
+        expect(body.data).to.have.property('access_code');
+        expect(body.data).to.have.property('reference');
+        reference = body.data.reference;
+        done();
+      })
+      .catch(function(error){
         return done(error);
-
-      expect(body).to.have.property('data');
-      expect(body.data).to.have.property('authorization_url');
-      expect(body.data).to.have.property('access_code');
-      expect(body.data).to.have.property('reference');
-
-      reference = body.data.reference;
-
-      done();
-    });
+      });
   });
 
   // Verify Transaction
   it("should verify a transaction", function(done) {
-    paystack.transaction.verify(reference, function(error, body) {
-
-      if (error)
-        return done(error);
-
+    paystack.transaction.verify(reference)
+    .then(function(body){
       expect(body).to.have.property('data');
       expect(body.data).to.be.an('object');
-
       done();
+    })
+    .catch(function(error){
+      return done(error);
     });
   });
 
@@ -60,29 +57,27 @@ describe("Paystack Transaction", function() {
 
   // List Transactions
   it("should list transaction", function(done) {
-    paystack.transaction.list(function(error, body) {
-
-      if (error)
-        return done(error);
-
+    paystack.transaction.list()
+    .then(function(body){
       expect(body).to.have.property('data');
       expect(body.data).to.be.instanceof(Array);
 
       done();
+    })
+    .catch(function(error){
+      return done(error);
     });
   });
 
   // Export Transactions
   it("should export transaction", function(done) {
-    paystack.transaction.export(function(error, body) {
-
-      if (error)
-        return done(error);
-
+    paystack.transaction.export()
+    .then(function(body){
       expect(body).to.have.property('data');
-
       done();
+    })
+    .catch(function(error){
+      return done(error);
     });
   });
 });
-
