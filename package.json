@@ -1,10 +1,10 @@
 {
   "name": "node-paystack",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "Promisified Paystack API wrapper",
   "main": "index.js",
   "scripts": {
-    "test": "env KEY=sk_test_1a68ac96a0171fb72111a24295d8d31d41c28eed ./node_modules/.bin/mocha ./test/*.js --reporter spec --timeout 8000"
+    "test": "./node_modules/.bin/mocha ./test/*.js --reporter spec --timeout 8000"
   },
   "keywords": [
     "payment",
