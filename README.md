@@ -13,8 +13,12 @@ npm install node-paystack
 ```js
 // Require the library
 var paystack = require('paystack')('secret_key');
+```
 
-// Make a call to the resource/method
+#### Making calls to the resources
+The resource methods accepts an optional callback as the last argument. The callback returns two JSON objects - `error`, which will be null for successful calls, and `body`, the response from the API call. All resources return a promise and hence calls can be cascaded (A callback argument is not required when cascading calls).
+
+```js
 // paystack.{resource}.{method}
 paystack.customer.list(function(error, body) {
   console.log(error);
@@ -31,8 +35,6 @@ paystack.customer.list()
   console.log(error);
 });
 ```
-
-The resource method accepts an optional callback as the last argument. The callback returns two JSON objects - `error`, which will be null for successful calls, and `body`, the response from the API call.
 
 For resource methods that use POST or PUT, the JSON body can be passed as the first argument.
 
@@ -61,7 +63,7 @@ paystack.plan.create({
 });
 ```
 
-For GET, you can pass the required ID as string and optional parameters as an optioal object argument.
+For GET, you can pass the required ID as string and optional parameters as an optional object argument.
 
 ```js
 paystack.plan.get(90, function(error, body) {
@@ -152,3 +154,7 @@ If you are contributing to the repo, kindly update the necessary test file in `/
 
 - Proper resource examples
 - ES6 support
+
+### Credits
+
+[Kehers Paystack](https://github.com/kehers/paystack)
