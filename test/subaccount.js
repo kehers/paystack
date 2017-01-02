@@ -15,19 +15,18 @@ describe("Paystack Subaccount", function() {
       settlement_bank: 'Access Bank',
       account_number: '0193274682',
       percentage_charge: 18.2
-    }, function(error, body) {
-
-      if (error)
-        return done(error);
-
+    })
+    .then(function(body){
       expect(body).to.have.property('data');
       expect(body.data).to.have.property('id');
       expect(body.data).to.have.property('subaccount_code');
 
       subaccount_id = body.data.id;
       subaccount_code = body.data.subaccount_code;
-
       done();
+    })
+    .catch(function(error){
+      return done(error);
     });
   });
 
@@ -36,58 +35,54 @@ describe("Paystack Subaccount", function() {
     paystack.subaccount.update(subaccount_code, {
       primary_contact_email: 'wale@obo.com',
       percentage_charge: 98.9
-    }, function(error, body) {
-
-      if (error)
-        return done(error);
-
+    })
+    .then(function(body){
       expect(body).to.have.property('data');
       expect(body.data).to.have.property('id');
-
       done();
+    })
+    .catch(function(error){
+      return done(error);
     });
   });
 
   // Fetch Subaccount
   it("should get details of a subaccount", function(done) {
-    paystack.subaccount.get(subaccount_code, function(error, body) {
-
-      if (error)
-        return done(error);
-
+    paystack.subaccount.get(subaccount_code)
+    .then(function(body){
       expect(body).to.have.property('data');
       expect(body.data).to.have.property('id');
-
       done();
+    })
+    .catch(function(error){
+      return done(error);
     });
   });
 
   // list Banks
   it("should list supported banks", function(done) {
-    paystack.subaccount.listBanks(function(error, body) {
-
-      if (error)
-        return done(error);
-
+    paystack.subaccount.listBanks()
+    .then(function(body){
       expect(body).to.have.property('data');
       expect(body.data).to.be.instanceof(Array);
-
       done();
+    })
+    .catch(function(error){
+      return done(error);
     });
   });
 
 
   // List Subaccounts
   it("should list subaccounts", function(done) {
-    paystack.subaccount.list(function(error, body) {
-
-      if (error)
-        return done(error);
-
+    paystack.subaccount.list()
+    .then(function(body){
       expect(body).to.have.property('data');
       expect(body.data).to.be.instanceof(Array);
-
       done();
+    })
+    .catch(function(error){
+      return done(error);
     });
   });
 

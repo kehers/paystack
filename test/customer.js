@@ -13,60 +13,55 @@ describe("Paystack Customers", function() {
         first_name: 'Opeyemi',
         last_name: 'Obembe',
         email: 'kehers@gmail.com'
-      }, function(error, body) {
-
-      if (error)
+      })
+      .then(function(body){
+        expect(body).to.have.property('data');
+        expect(body.data).to.have.property('id');
+        customer_id = body.data.id;
+        done();
+      })
+      .catch(function(error){
         return done(error);
-
-      expect(body).to.have.property('data');
-      expect(body.data).to.have.property('id');
-
-      customer_id = body.data.id;
-
-      done();
-    });
+      });
   });
 
   // Update Customer
   it("should update a customer", function(done) {
-    paystack.customer.update(customer_id, {last_name: 'Kehers'}, function(error, body) {
-
-      if (error)
-        return done(error);
-
+    paystack.customer.update(customer_id, {last_name: 'Kehers'})
+    .then(function(body){
       expect(body).to.have.property('data');
       expect(body.data).to.have.property('id');
-
       done();
+    })
+    .catch(function(error){
+      return done(error);
     });
   });
 
   // Fetch Customer
   it("should get a customer's details", function(done) {
-    paystack.customer.get(customer_id, function(error, body) {
-
-      if (error)
-        return done(error);
-
+    paystack.customer.get(customer_id)
+    .then(function(body){
       expect(body).to.have.property('data');
       expect(body.data).to.have.property('id');
-
       done();
+    })
+    .catch(function(error){
+      return done(error);
     });
   });
 
   // List Customers
   it("should list customers", function(done) {
-    paystack.customer.list(function(error, body) {
-
-      if (error)
-        return done(error);
-
+    paystack.customer.list()
+    .then(function(body){
       expect(body).to.have.property('data');
       expect(body.data).to.be.instanceof(Array);
-
       done();
-    });
+    })
+    .catch(function(error){
+      return done(error);
+    });    
   });
 
   //Whitelist Customer
