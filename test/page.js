@@ -12,59 +12,53 @@ describe("Paystack Pages", function() {
     paystack.page.create({
         name: 'API Monthly',
         amount: 100000
-      }, function(error, body) {
-
-      if (error)
+      })
+      .then(function(body){
+        expect(body).to.have.property('data');
+        expect(body.data).to.have.property('id');
+        page_id = body.data.id;
+        done();
+      })
+      .catch(function(error){
         return done(error);
-
-      expect(body).to.have.property('data');
-      expect(body.data).to.have.property('id');
-
-      page_id = body.data.id;
-
-      done();
-    });
+      });
   });
 
   // Update Page
   it("should update a page", function(done) {
-    paystack.page.update(page_id, {'name': 'Monthly Subscription for API Course'}, function(error, body) {
-
-      if (error)
-        return done(error);
-
-      expect(body).to.be.an('object');
-
+    paystack.page.update(page_id, {'name': 'Monthly Subscription for API Course'})
+    .then(function(body){
+      expect(body).to.an('object');
       done();
+    })
+    .catch(function(error){
+      return done(error);
     });
   });
 
   // Fetch Page
   it("should get details of a page", function(done) {
-    paystack.page.get(page_id, function(error, body) {
-
-      if (error)
-        return done(error);
-
+    paystack.page.get(page_id)
+    .then(function(body){
       expect(body).to.have.property('data');
       expect(body.data).to.have.property('slug');
-
       done();
+    })
+    .catch(function(error){
+      return done(error);
     });
   });
 
   // List Pages
   it("should list page", function(done) {
-    paystack.page.list(function(error, body) {
-
-      if (error)
-        return done(error);
-
+    paystack.page.list()
+    .then(function(body){
       expect(body).to.have.property('data');
       expect(body.data).to.be.instanceof(Array);
-
       done();
+    })
+    .catch(function(error){
+      return done(error);
     });
   });
 });
-
