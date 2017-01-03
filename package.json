@@ -1,10 +1,19 @@
 {
+<<<<<<< HEAD
   "name": "paystack",
-  "version": "1.4.1",
+  "version": "1.5.0",
   "description": "Paystack API wrapper",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/.bin/mocha ./test/plan.js --reporter spec --timeout 8000"
+    "test": "./node_modules/.bin/mocha ./test/*.js --reporter spec --timeout 5000"
+=======
+  "name": "node-paystack",
+  "version": "1.0.3",
+  "description": "Promisified Paystack API wrapper",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/.bin/mocha ./test/*.js --reporter spec --timeout 8000"
+>>>>>>> d13428d... Test scripts promisified
   },
   "keywords": [
     "payment",
@@ -16,8 +25,7 @@
   "license": "MIT",
   "dependencies": {
     "promise": "^7.1.1",
-    "request": "^2.79.0",
-    "request-promise": "^4.1.1"
+    "request": "^2.79.0"
   },
   "devDependencies": {
     "chai": "^3.5.0",
@@ -25,10 +33,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/theslyone/node-paystack.git"
+    "url": "https://github.com/kehers/paystack.git"
   },
   "bugs": {
-    "url": "https://github.com/theslyone/node-paystack/issues"
+    "url": "https://github.com/kehers/paystack/issues"
   },
-  "homepage": "https://github.com/theslyone/node-paystack"
+  "homepage": "https://github.com/kehers/paystack"
 }

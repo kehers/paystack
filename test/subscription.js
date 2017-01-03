@@ -72,15 +72,14 @@ describe("Paystack Subscriptions", function() {
 
   // List Subscription
   it("should list subscription", function(done) {
-    paystack.subscription.list(function(error, body) {
-
-      if (error)
-        return done(error);
-
+    paystack.subscription.list()
+    .then(function(body){
       expect(body).to.have.property('data');
       expect(body.data).to.be.instanceof(Array);
-
       done();
-    });
+    })
+    .catch(function(error){
+      return done(error);
+    });    
   });
 });

@@ -7,6 +7,7 @@ describe("Paystack Plan", function() {
 
   var plan_id, plan_code;
 
+  
   // New Plan
   it("should create a new plan", function(done) {
     paystack.plan.create({
