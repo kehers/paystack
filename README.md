@@ -108,7 +108,3 @@ If you are contributing to the repo, kindly update the necessary test file in `/
 
 - Proper resource examples
 - ES6 support
-
-### Credits
-
-[Kehers Paystack](https://github.com/kehers/paystack)

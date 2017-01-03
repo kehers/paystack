@@ -1,19 +1,10 @@
 {
-<<<<<<< HEAD
   "name": "paystack",
   "version": "1.5.0",
   "description": "Paystack API wrapper",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/.bin/mocha ./test/*.js --reporter spec --timeout 5000"
-=======
-  "name": "node-paystack",
-  "version": "1.0.3",
-  "description": "Promisified Paystack API wrapper",
-  "main": "index.js",
-  "scripts": {
     "test": "./node_modules/.bin/mocha ./test/*.js --reporter spec --timeout 8000"
->>>>>>> d13428d... Test scripts promisified
   },
   "keywords": [
     "payment",
