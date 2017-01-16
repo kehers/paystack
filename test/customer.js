@@ -25,6 +25,24 @@ describe("Paystack Customers", function() {
       });
   });
 
+  // To test callback & then chaining
+  it("create new customer, parse in callback and enter then handler", function(done) {
+    paystack.customer.create({
+       first_name: 'Opeyemi',
+       last_name: 'Obembe',
+      email: 'kehers@gmail.com'
+    }, function(error, body) {
+    	// callback should parse response and return an object
+    	return {'name': 'subomi'};
+    }).then(function(body) {
+     // callback is called, but then handler does not show its processing, but returns initial api response
+    	expect(body).to.have.property('name')
+    	done();
+    }).catch(function(error) {
+    	return done(error);
+    });
+  });
+
   // Update Customer
   it("should update a customer", function(done) {
     paystack.customer.update(customer_id, {last_name: 'Kehers'})
@@ -61,7 +79,7 @@ describe("Paystack Customers", function() {
     })
     .catch(function(error){
       return done(error);
-    });    
+    });
   });
 
   //Whitelist Customer

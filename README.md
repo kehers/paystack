@@ -1,4 +1,4 @@
-## paystack ![Build status](https://travis-ci.org/kehers/paystack.svg?branch=master)
+## paystack ![Build status](https://travis-ci.org/theslyone/node-paystack.svg?branch=master)
 
 Promisified version of the original paystack API wrapper for [Paystack](https://paystack.co/).
 
