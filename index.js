@@ -135,6 +135,9 @@ Paystack.prototype = {
 
       if (qs)
         options.qs = qs;
+		
+	  
+
       return new Promise(function (fulfill, reject){
         request(options, function(error, response, body) {
           // return body
@@ -150,11 +153,18 @@ Paystack.prototype = {
           else{
             fulfill(body);
           }
-          if (callback){
-            callback(error, body);
-          }
         });
-      });
+      }).then(function(value) {
+      	if(callback) {
+      		return callback(null, value);
+      	}
+      	return value;
+      }, function(reason) {
+      	if(callback) {
+      		return callback(reason, null);
+      	}
+      	return reason;
+      })
     }
   },
 
