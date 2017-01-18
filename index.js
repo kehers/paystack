@@ -6,8 +6,9 @@ Paystack API wrapper
 'use strict';
 
 var
-    request = require('request')
-    ,root = 'https://api.paystack.co'
+    request = require('request'),
+    root = 'https://api.paystack.co',
+    Promise = require('promise')
 ;
 
 var resources = {
@@ -33,56 +34,51 @@ Paystack.prototype = {
   extend:  function(params) {
   	// This looks more sane.
   	var self = this;
-    
-    return function() {
-	  
+    return function(){
       // Convert argument to array
       var args = new Array(arguments.length);
       var l = args.length;
       for(var i = 0; i < l; ++i) {
         args[i] = arguments[i];
       }
-	
-      // Check for callback & Pull it out from the array
-      var callback = l > 0 && typeof args.slice(l-1)[0] === "function" ? args.splice(l-1)[0] : "undefined"; 
-     
-      var body, qs;
-      
-      // quick fix - method checking 
-      var method = params.method in {"get":'', "post":'', "put":''}
-      			   ? params.method
-      			   : (function () { throw new Error("Method not Allowed! - Resource declaration error") })()
-      var endpoint = [root, params.endpoint].join('');
-	  
-	  // Checking for required params;
-	  if(params.params) {
 
-	  	var paramList = params.params;
-	 
-	  	// Pull body passed
-	  	var body = args.length === 2 ? args[1] : args[0];
-	  	paramList.filter(function(item, index, array) {
-	  		if(item.indexOf("*") === -1) {
-	  			// Not required
-	  			return;
-	  		}
-	  		item = item.replace("*", "");
-	  		
-	  		if(!(item in body)) {
-	  			throw new Error("Required Parameters Ommited - " + item);
-	  		}
-	  		return;
-	  		
-	  	});
-	  }
-	  
-	  
-	  
+      // Check for callback & Pull it out from the array
+      var callback = l > 0 && typeof args.slice(l-1)[0] === "function" ? args.splice(l-1)[0] : undefined;
+
+      var body, qs;
+
+      // quick fix - method checking
+      var method = params.method in {"get":'', "post":'', "put":''}
+                 ? params.method
+                 : (function () { throw new Error("Method not Allowed! - Resource declaration error") })()
+      var endpoint = [root, params.endpoint].join('');
+      // Checking for required params;
+      if(params.params) {
+        var paramList = params.params;
+
+        // Pull body passed
+        var body = args.length === 2 ? args[1] : args[0];
+        paramList.filter(function(item, index, array) {
+          if(item.indexOf("*") === -1) {
+            // Not required
+            return;
+          }
+          item = item.replace("*", "");
+
+          if(!(item in body)) {
+            throw new Error("Required Parameters Ommited - " + item);
+          }
+          return;
+
+        });
+      }
+
       // Get arguments in endpoint e.g {id} in customer/{id} and pull
       // out from array
       var argsInEndpoint = endpoint.match(/{[^}]+}/g);
       if (argsInEndpoint) {
         l = argsInEndpoint.length;
+
         // Do we have one or more?
         if (l > 0) {
           // Confirm resource declaration good
@@ -93,7 +89,7 @@ Paystack.prototype = {
 
           // Confirm user passed the argument to method
           // and replace in endpoint
-          
+
           var match, index;
           for (var i=0;i<l;i++) {
             match = argsInEndpoint[i].replace(/\W/g, '');
@@ -105,14 +101,13 @@ Paystack.prototype = {
               }
 
               // todo: args[index] must be string or int
-
               endpoint = endpoint.replace(new RegExp(argsInEndpoint[i]), args[index]);
               args.splice(index, 1);
             }
           }
         }
       }
-		
+
       // Add post/put/[delete?] body
       if (args[0]) {
         if (method == 'post' || method == 'put') {
@@ -139,24 +134,35 @@ Paystack.prototype = {
 
       if (qs)
         options.qs = qs;
-	
-	request(options, function(error, response, body) {
-    	// request module error as not been previously handled properly.
-    	// To see this error try running this module without internet connection
-        if(!error) {
-        	if(callback){
-        		if(response.statusCode > 201) {
-        			error = body;
-        			body = null;
-        		}
-        		        	
-				return callback(error, body);
-			}
-        	// gc would throw response away
-         }
-        throw new Error(error);
-      });
 
+      return new Promise(function (fulfill, reject){
+        request(options, function(error, response, body) {
+          // return body
+          if (error){
+            reject(error);
+          }
+          else if(!body.status){
+          
+            // Error from API??
+            error = body;
+            body = null;
+            reject(error);
+          }
+          else{
+            fulfill(body);
+          }
+        });
+      }).then(function(value) {
+      	if(callback) {
+      		return callback(null, value);
+      	}
+      	return value;
+      }).catch(function(reason) {
+      	if(callback) {
+      		return callback(reason, null);
+      	}
+      	return reason;
+      });
     }
   },
 
@@ -165,9 +171,9 @@ Paystack.prototype = {
     // Looping over all resources
     for (var j in resources) {
       // Creating a surrogate function
-      anon = function(){};	
+      anon = function(){};
       // Looping over the properties of each resource
-      for(var i in resources[j]) {	
+      for(var i in resources[j]) {
         anon.prototype[i] = this.extend(resources[j][i]);
       }
       Paystack.prototype[j] = new anon();

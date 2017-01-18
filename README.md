@@ -1,6 +1,6 @@
-## paystack ![Build status](https://travis-ci.org/kehers/paystack.svg?branch=master)
+## paystack ![Build status](https://travis-ci.org/theslyone/node-paystack.svg?branch=master)
 
-A Nodejs API wrapper for [Paystack](https://paystack.co/).
+Promisified version of the original paystack API wrapper for [Paystack](https://paystack.co/).
 
 ### Installation
 
@@ -13,16 +13,18 @@ npm install paystack
 ```js
 // Require the library
 var paystack = require('paystack')('secret_key');
+```
 
-// Make a call to the resource/method
+#### Making calls to the resources
+The resource methods accepts an optional callback as the last argument. The callback returns two JSON objects - `error`, which will be null for successful calls, and `body`, the response from the API call. All resources return a promise and hence calls can be cascaded (A callback argument is not required when cascading calls).
+
+```js
 // paystack.{resource}.{method}
 paystack.customer.list(function(error, body) {
   console.log(error);
   console.log(body);
 });
 ```
-
-The resource method accepts an optional callback as the last argument. The callback returns two JSON objects - `error`, which will be null for successful calls, and `body`, the response from the API call.
 
 For resource methods that use POST or PUT, the JSON body can be passed as the first argument.
 
@@ -37,7 +39,7 @@ paystack.plan.create({
 });
 ```
 
-For GET, you can pass the required ID as string and optional parameters as an optioal object argument.
+For GET, you can pass the required ID as string and optional parameters as an optional object argument.
 
 ```js
 paystack.plan.get(90, function(error, body) {
@@ -61,7 +63,7 @@ paystack.transactions.list({
   - create
   - get
   - list
-  - update 
+  - update
 - transaction
   - initialize
   - charge
@@ -91,9 +93,8 @@ paystack.transactions.list({
   - list
   - listBanks
   - update
-  
-### Contributing
 
+### Contributing
 - To ensure consistent code style, please follow the [editorconfig rules](http://obem.be/2015/06/01/a-quick-note-on-editorconfig.html) in .editorconfig
 
 ### Tests
