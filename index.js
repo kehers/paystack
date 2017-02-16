@@ -16,7 +16,8 @@ var resources = {
   transaction: require('./resources/transaction'),
   page: require('./resources/page'),
   subscription: require('./resources/subscription'),
-  subaccount: require('./resources/subaccount')
+  subaccount: require('./resources/subaccount'),
+  misc: require('./resources/misc')
 }
 
 function Paystack(key) {
@@ -151,9 +152,9 @@ Paystack.prototype = {
         		}
         		        	
 				return callback(error, body);
-			}
+		   }
         	// gc would throw response away
-         }
+       }
         throw new Error(error);
       });
 

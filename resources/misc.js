@@ -10,9 +10,7 @@ module.exports = {
 	list_banks: {
 		method: 'get',
 		endpoint: '/bank',
-		params: [
-			['perPage', 'page']
-		]
+		params: ['perPage', 'page']
 	},
 	
 	resolve_bin: {
