@@ -1,6 +1,6 @@
-## paystack ![Build status](https://travis-ci.org/theslyone/node-paystack.svg?branch=master)
+## Paystack ![Build status](https://travis-ci.org/theslyone/node-paystack.svg?branch=master)
 
-Promisified version of the original paystack API wrapper for [Paystack](https://paystack.co/).
+Nodejs API wrapper for [Paystack](https://paystack.co/).
 
 ### Installation
 
@@ -16,15 +16,29 @@ var paystack = require('paystack')('secret_key');
 ```
 
 #### Making calls to the resources
-The resource methods accepts an optional callback as the last argument. The callback returns two JSON objects - `error`, which will be null for successful calls, and `body`, the response from the API call. All resources return a promise and hence calls can be cascaded (A callback argument is not required when cascading calls).
+The resource methods accepts are promisified, but can receive optional callback as the last argument.
 
 ```js
+// First Option
 // paystack.{resource}.{method}
 paystack.customer.list(function(error, body) {
   console.log(error);
   console.log(body);
 });
 ```
+```js
+// Second Option
+// paystack.{resource}
+paystack.customer.list()
+	.then(function(body) {
+  		console.log(body);
+	})
+	.catch(function(error) {
+		console.log(error);
+	});
+```
+
+
 
 For resource methods that use POST or PUT, the JSON body can be passed as the first argument.
 
@@ -33,28 +47,29 @@ paystack.plan.create({
   name: 'API demo',
   amount: 10000,
   interval: 'monthly'
-},function(error, body) {
-  console.log(error);
-  console.log(body);
-});
+})
+  .then(function(error, body) {
+  	 console.log(error);
+    console.log(body);
+	});
 ```
 
 For GET, you can pass the required ID as string and optional parameters as an optional object argument.
 
 ```js
-paystack.plan.get(90, function(error, body) {
-  console.log(error);
-  console.log(body);
-});
+paystack.plan.get(90)
+	.then(function(error, body) {
+		console.log(error);
+		console.log(body);
+	});
 ```
 
 ```js
-paystack.transactions.list({
-  perPage: 20
-}, function(error, body) {
-  console.log(error);
-  console.log(body);
-});
+paystack.transactions.list({perPage: 20})
+	.then(function(error, body) {
+		console.log(error);
+		console.log(body);
+	});
 ```
 
 ### Resources
@@ -93,6 +108,11 @@ paystack.transactions.list({
   - list
   - listBanks
   - update
+- Miscellanous
+  - list_banks
+  - resolve_bin
+  
+
 
 ### Contributing
 - To ensure consistent code style, please follow the [editorconfig rules](http://obem.be/2015/06/01/a-quick-note-on-editorconfig.html) in .editorconfig
