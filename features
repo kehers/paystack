@@ -1,0 +1,16 @@
+Version 2.0.0 Features Proposal
+- Promisified api
+- One object passed containing args and post data
+
+API Example Usage
+paystack.customer.update({
+	id: 900,
+	data: {
+		firstname: 'Subomi',
+		lastname: 'Oluwalana''
+		email: 'subomi.oluwalana@yahoo.com'
+		phone: 2348077886076
+	}
+}).then(JSON.parse)
+  .then(callback);	
+
