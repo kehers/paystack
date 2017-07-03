@@ -17,7 +17,8 @@ var resources = {
   transaction: require('./resources/transaction'),
   page: require('./resources/page'),
   subscription: require('./resources/subscription'),
-  subaccount: require('./resources/subaccount')
+  subaccount: require('./resources/subaccount'),
+  settlements: require('./resources/settlements')
 }
 
 function Paystack(key) {
@@ -33,7 +34,7 @@ Paystack.prototype = {
 
   extend:  function(params) {
   	// This looks more sane.
-  	var self = this;
+    var self = this;
     return function(){
       // Convert argument to array
       var args = new Array(arguments.length);
