@@ -9,7 +9,7 @@ module.exports = {
   */
   create: {
       method: 'post',
-      endpoint: root,
+      path: root,
       params: ['name*', 'description', 'amount*', 'interval*', 'send_invoices', 'send_sms', 'hosted_page', 'hosted_page_url', 'hosted_page_summary', 'currency']
     },
 
@@ -18,8 +18,7 @@ module.exports = {
   */
   get: {
       method: 'get',
-      endpoint: [root, '/{id}'].join(''),
-      args: ['id']
+      path: [root, '/{id}'].join('')
   },
 
   /*
@@ -27,7 +26,7 @@ module.exports = {
   */
   list: {
       method: 'get',
-      endpoint: root
+      path: root
     },
 
   /*
@@ -35,8 +34,7 @@ module.exports = {
   */
   update: {
       method: 'put',
-      endpoint: [root, '/{id}'].join(''),
-      params: ['name', 'description', 'amount', 'interval', 'send_invoices', 'send_sms', 'hosted_page', 'hosted_page_url', 'hosted_page_summary', 'currency'],
-      args: ['id']
+      path: [root, '/{id}'].join(''),
+      params: ['name', 'description', 'amount', 'interval', 'send_invoices', 'send_sms', 'hosted_page', 'hosted_page_url', 'hosted_page_summary', 'currency']
     }
 };

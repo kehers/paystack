@@ -10,7 +10,7 @@ module.exports = {
   */
   create: {
       method: 'post',
-      endpoint: root,
+      path: root,
       params: ['business_name*', 'settlement_bank*', 'account_number*', 'percentage_charge*']
     },
 
@@ -19,8 +19,7 @@ module.exports = {
   */
   get: {
       method: 'get',
-      endpoint: [root, '/{id_or_slug}'].join(''),
-      args: ['id_or_slug']
+      path: [root, '/{id_or_slug}'].join('')
     },
 
   /*
@@ -28,7 +27,7 @@ module.exports = {
   */
   list: {
       method: 'get',
-      endpoint: root
+      path: root
     },
 
   /*
@@ -36,7 +35,7 @@ module.exports = {
   */
   listBanks: {
       method: 'get',
-      endpoint: '/bank'
+      path: '/bank'
     },
 
   /*
@@ -45,8 +44,7 @@ module.exports = {
   */
   update: {
       method: 'put',
-      endpoint: [root, '/{id_or_slug}'].join(''),
-      params: ['business_name', 'settlement_bank', 'account_number', 'percentage_charge'],
-      args: ['id_or_slug']
+      path: [root, '/{id_or_slug}'].join(''),
+      params: ['business_name', 'settlement_bank', 'account_number', 'percentage_charge']
     }
 };
