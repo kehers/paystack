@@ -19,16 +19,16 @@ var paystack = require('paystack')('secret_key');
 The resource methods accepts are promisified, but can receive optional callback as the last argument.
 
 ```js
-// First Option
-// paystack.{resource}.{method}
+// First Option (with callback)
+// paystack.{resource}.{method}(callback)
 paystack.customer.list(function(error, body) {
   console.log(error);
   console.log(body);
 });
 ```
 ```js
-// Second Option
-// paystack.{resource}
+// Second Option (as promise)
+// paystack.{resource}.{method}.then().catch()
 paystack.customer.list()
 	.then(function(body) {
   		console.log(body);
@@ -40,7 +40,28 @@ paystack.customer.list()
 
 
 
-For resource methods that use POST or PUT, the JSON body can be passed as the first argument.
+For GET endpoints with url path parameters (e.g. https://api.paystack.co/plan/{id_or_plan_code}), pass path parameter as string or number
+Separate path parameter values by comma if more than 1 path parameter and place them in order as they appear in the url path.
+
+```js
+paystack.plan.get(90)
+  .then(function(error, body) {
+    console.log(error);
+    console.log(body);
+  });
+```
+
+For GET endpoints with query string parameters (e.g. https://api.paystack.co/bank/resolve?account_number=0022728151&bank_code=063), pass paramaters as object.
+
+```js
+paystack.bank.resolve_account_number({account_number: '0022778151', bank_code: '063'})
+  .then(function(error, body) {
+    console.log(error);
+    console.log(body);
+  });
+```
+
+For POST or PUT endpoints, the JSON body should be passed as the first argument.
 
 ```js
 paystack.plan.create({
@@ -54,25 +75,18 @@ paystack.plan.create({
 	});
 ```
 
-For GET, you can pass the required ID as string and optional parameters as an optional object argument.
+For POST or PUT endpoints, if the endpoint also has path parameters (e.g. https://api.paystack.co/customer/{id_or_customer_code}), pass the path parameters as explained above, before passing the JSON body object.
 
 ```js
-paystack.plan.get(90)
-	.then(function(error, body) {
-		console.log(error);
-		console.log(body);
-	});
+var customer_id = 100;
+paystack.customer.update(customer_id, {last_name: 'Kehers'})
+  .then(function(error, body) {
+     console.log(error);
+    console.log(body);
+  });
 ```
 
-```js
-paystack.transactions.list({perPage: 20})
-	.then(function(error, body) {
-		console.log(error);
-		console.log(body);
-	});
-```
-
-### Resources
+### Resources and Methods
 
 - customer
   - create
@@ -108,11 +122,31 @@ paystack.transactions.list({perPage: 20})
   - list
   - listBanks
   - update
+- bank
+  - list
+  - resolveAccountNumber
+  - resolveBin
 - Miscellanous
   - list_banks
   - resolve_bin
-  
 
+To use any endpoint, call 
+```js
+//using callback function
+paystack.{resource}.{method}(function(err, body){
+  console.log(error);
+  console.log(body);
+});
+
+//or as promise
+paystack.{resource}.{method}
+  .then(function(body) {
+      console.log(body);
+  })
+  .catch(function(error) {
+    console.log(error);
+  });
+```
 
 ### Contributing
 - To ensure consistent code style, please follow the [editorconfig rules](http://obem.be/2015/06/01/a-quick-note-on-editorconfig.html) in .editorconfig

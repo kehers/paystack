@@ -24,7 +24,7 @@ describe("Paystack Bank Related Functions", function() {
       account_number: '0022728151',
       bank_code: '063'
     };
-    paystack.bank.resolve_account_number(queryParams)
+    paystack.bank.resolveAccountNumber(queryParams)
       .then(function(body){
         /** uncomment following 3 lines if above details are valid **/
         // expect(body).to.have.property('data');
@@ -42,8 +42,8 @@ describe("Paystack Bank Related Functions", function() {
   });
 
   // Resolve a Bin Card
-  it("should resolve a bin card", function(done) {
-    paystack.bank.resolve_bin(539983)
+  it("should resolve a card bin", function(done) {
+    paystack.bank.resolveBin(539983)
       .then(function(body){
         expect(body).to.have.property('data');
         expect(body.data).to.have.property('bin');

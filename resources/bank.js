@@ -12,13 +12,13 @@ module.exports = {
         params: ['perPage', 'page']
     },
 
-    resolve_account_number: {
+    resolveAccountNumber: {
         method: 'get',
         path: [root, '/resolve'].join(''),
         params: ['account_number*', 'bank_code*']
     },
 
-    resolve_bin: {
+    resolveBin: {
         method: 'get',
         path: '/decision/bin/{bin}'
     }
