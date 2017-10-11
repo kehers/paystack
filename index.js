@@ -140,12 +140,13 @@ Paystack.prototype = {
 
       return new Promise(function (fulfill, reject){
         request(options, function(error, response, body) {
-          console.log(body)
           // return body
           if (error){
+            console.log("From index == > error")
             reject(error);
           }
           else if(!body.status){
+            console.log("From index == > API error")
 
             // Error from API??
             error = body;
@@ -153,6 +154,7 @@ Paystack.prototype = {
             reject(error);
           }
           else{
+            console.log("From index == > successful")
             fulfill(body);
           }
         });
