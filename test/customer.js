@@ -15,6 +15,7 @@ describe("Paystack Customers", function() {
         email: 'kehers@gmail.com'
       })
       .then(function(body){
+        console.log(body)        
         expect(body).to.have.property('data');
         expect(body.data).to.have.property('id');
         customer_id = body.data.id;
@@ -60,9 +61,9 @@ describe("Paystack Customers", function() {
   it("should get a customer's details", function(done) {
     paystack.customer.get(customer_id)
     .then(function(body){
+      done();
       expect(body).to.have.property('data');
       expect(body.data).to.have.property('id');
-      done();
     })
     .catch(function(error){
       return done(error);
