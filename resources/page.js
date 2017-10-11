@@ -9,7 +9,7 @@ module.exports = {
   */
   create: {
       method: 'post',
-      endpoint: root,
+      path: root,
       params: ['name*', 'description', 'amount']
     },
 
@@ -18,8 +18,7 @@ module.exports = {
   */
   get: {
       method: 'get',
-      endpoint: [root, '/{id}'].join(''),
-      args: ['id']
+      path: [root, '/{id}'].join('')
   },
 
   /*
@@ -27,7 +26,7 @@ module.exports = {
   */
   list: {
       method: 'get',
-      endpoint: root
+      path: root
     },
 
   /*
@@ -35,17 +34,16 @@ module.exports = {
   */
   update: {
       method: 'put',
-      endpoint: [root, '/{id}'].join(''),
-      params: ['name', 'description', 'amount', 'active'],
-      args: ['id']
-    }, 
-   
+      path: [root, '/{id}'].join(''),
+      params: ['name', 'description', 'amount', 'active']
+    },
+
    /*
    Check Slug Avaliability
    */
   slug: {
-  	 method: 'get', 
-  	 endpoint: [root, '/check_slug_availability'].join(''),
-  	 params: ['slug*'] 	
+  	 method: 'get',
+  	 path: [root, '/check_slug_availability'].join(''),
+  	 params: ['slug*']
   }
 };

@@ -9,7 +9,7 @@ module.exports = {
   */
   initialize: {
       method: 'post',
-      endpoint: [root, '/initialize'].join(''),
+      path: [root, '/initialize'].join(''),
       params: ['reference', 'amount*', 'email*', 'plan']
     },
 
@@ -18,7 +18,7 @@ module.exports = {
   */
   export: {
       method: 'get',
-      endpoint: [root, '/export'].join(''),
+      path: [root, '/export'].join(''),
       params: ['from', 'to', 'settled', 'payment_page']
     },
 
@@ -27,7 +27,7 @@ module.exports = {
   */
   charge: {
       method: 'post',
-      endpoint: [root, '/charge_authorization'].join(''),
+      path: [root, '/charge_authorization'].join(''),
       params: ['reference', 'authorization_code*', 'email*', 'amount*']
     },
 
@@ -36,7 +36,7 @@ module.exports = {
   */
   chargeToken: {
       method: 'post',
-      endpoint: [root, '/charge_token'].join(''),
+      path: [root, '/charge_token'].join(''),
       params: ['reference', 'token*', 'email', 'amount']
     },
 
@@ -45,8 +45,7 @@ module.exports = {
   */
   get: {
       method: 'get',
-      endpoint: [root, '/{id}'].join(''),
-      args: ['id']
+      path: [root, '/{id}'].join('')
   },
 
   /*
@@ -54,7 +53,7 @@ module.exports = {
   */
   list: {
       method: 'get',
-      endpoint: root
+      path: root
     },
 
   /*
@@ -62,7 +61,7 @@ module.exports = {
   */
   totals: {
       method: 'get',
-      endpoint: [root, '/totals'].join('')
+      path: [root, '/totals'].join('')
     },
 
   /*
@@ -70,8 +69,7 @@ module.exports = {
   */
   verify: {
       method: 'get',
-      endpoint: [root, '/verify/{reference}'].join(''),
-      args: ['reference']
+      path: [root, '/verify/{reference}'].join('')
     },
 
 };

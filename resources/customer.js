@@ -10,7 +10,7 @@ module.exports = {
   */
   create: {
       method: 'post',
-      endpoint: root,
+      path: root,
       params: ['first_name', 'last_name', 'email*', 'phone']
     },
 
@@ -19,8 +19,7 @@ module.exports = {
   */
   get: {
       method: 'get',
-      endpoint: [root, '/{id}'].join(''),
-      args: ['id']
+      path: [root, '/{id}'].join('')
   },
 
   /*
@@ -28,7 +27,7 @@ module.exports = {
   */
   list: {
       method: 'get',
-      endpoint: root
+      path: root
     },
 
   /*
@@ -37,9 +36,8 @@ module.exports = {
   */
   update: {
       method: 'put',
-      endpoint: [root, '/{id}'].join(''),
-      params: ['first_name', 'last_name', 'email', 'phone'],
-      args: ['id']
+      path: [root, '/{id}'].join(''),
+      params: ['first_name', 'last_name', 'email', 'phone']
     },
 
   /*
@@ -48,7 +46,7 @@ module.exports = {
   */
   setRiskAction: {
     method: 'post',
-    endpoint: [root, '/set_risk_action'].join(''),
+    path: [root, '/set_risk_action'].join(''),
     params: ['customer*', 'risk_action']
   }
 };

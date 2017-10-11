@@ -9,7 +9,7 @@ module.exports = {
   */
   create: {
       method: 'post',
-      endpoint: root,
+      path: root,
       params: ['customer*', 'plan*', 'authorization']
     },
 
@@ -18,7 +18,7 @@ module.exports = {
   */
   disable: {
       method: 'post',
-      endpoint: root,
+      path: root,
       params: ['code*', 'token*']
     },
 
@@ -27,7 +27,7 @@ module.exports = {
   */
   enable: {
       method: 'post',
-      endpoint: root,
+      path: root,
       params: ['code*', 'token*']
     },
 
@@ -36,8 +36,7 @@ module.exports = {
   */
   get: {
       method: 'get',
-      endpoint: [root, '/{id_or_subscription_code}'].join(''),
-      args: ['id_or_subscription_code']
+      path: [root, '/{id_or_subscription_code}'].join('')
   },
 
   /*
@@ -45,7 +44,7 @@ module.exports = {
   */
   list: {
       method: 'get',
-      endpoint: root
+      path: root
     }
 
 };
