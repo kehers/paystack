@@ -8,7 +8,7 @@ describe("Paystack Customers", function() {
   var customer_id;
 
   // New Customer
-  it("should create a new customer", function(done) {
+  it("create a new customer", function(done) {
     paystack.customer.create({
         first_name: 'Opeyemi',
         last_name: 'Obembe',
@@ -27,16 +27,16 @@ describe("Paystack Customers", function() {
   });
 
   // To test callback & then chaining
-  it("create new customer, parse in callback and enter then handler", function(done) {
+  it("create a new customer, parse in callback and enter then handler", function(done) {
     paystack.customer.create({
        first_name: 'Opeyemi',
        last_name: 'Obembe',
       email: 'kehers@gmail.com'
     }, function(error, body) {
     	// callback should parse response and return an object
-    	return {'name': 'subomi'};
+      return {'name': 'subomi'};
     }).then(function(body) {
-     // callback is called, but then handler does not show its processing, but returns initial api response
+     // callback is called, and it returns a processed that to the then handler
     	expect(body).to.have.property('name')
     	done();
     }).catch(function(error) {
