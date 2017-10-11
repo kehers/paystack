@@ -29,7 +29,7 @@ function Paystack(key) {
     return new Paystack(key);
   }
 
-  this.key = key;
+  this.key = key || process.env["PAYSTACK_SECRET_KEY"];
   this.importResources();
 }
 
@@ -140,6 +140,7 @@ Paystack.prototype = {
 
       return new Promise(function (fulfill, reject){
         request(options, function(error, response, body) {
+          console.log(body)
           // return body
           if (error){
             reject(error);
