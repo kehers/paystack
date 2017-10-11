@@ -5,7 +5,7 @@ Paystack API wrapper
 
 'use strict';
 
-var
+var 
     request = require('request'),
     baseUrl = 'https://api.paystack.co',
     acceptedMethods = [ "get", "post", "put" ],
@@ -142,19 +142,15 @@ Paystack.prototype = {
         request(options, function(error, response, body) {
           // return body
           if (error){
-            console.log("From index == > error")
             reject(error);
           }
           else if(!body.status){
-            console.log("From index == > API error")
-
             // Error from API??
             error = body;
             body = null;
             reject(error);
           }
           else{
-            console.log("From index == > successful")
             fulfill(body);
           }
         });
