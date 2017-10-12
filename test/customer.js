@@ -31,7 +31,7 @@ describe("Paystack Customers using promises", function() {
        first_name: 'Opeyemi',
        last_name: 'Obembe',
       email: 'kehers@gmail.com'
-    }, function(body) {
+    }, function(error, body) {
     	// callback should parse response and return an object
       return {'name': 'subomi'};
     }).then(function(body) {
