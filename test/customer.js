@@ -3,18 +3,18 @@ var paystack = require('../index')(process.env.KEY)
   , expect = require('chai').expect
   ;
 
-describe("Paystack Customers", function() {
+describe("Paystack Customers using promises", function() {
 
   var customer_id;
 
   // New Customer
-  it("should create a new customer", function(done) {
+  it("create a new customer", function(done) {
     paystack.customer.create({
         first_name: 'Opeyemi',
         last_name: 'Obembe',
         email: 'kehers@gmail.com'
       })
-      .then(function(body){
+      .then(function(body){        
         expect(body).to.have.property('data');
         expect(body.data).to.have.property('id');
         customer_id = body.data.id;
@@ -26,16 +26,16 @@ describe("Paystack Customers", function() {
   });
 
   // To test callback & then chaining
-  it("create new customer, parse in callback and enter then handler", function(done) {
+  it("create a new customer, parse in callback and enter then handler", function(done) {
     paystack.customer.create({
        first_name: 'Opeyemi',
        last_name: 'Obembe',
       email: 'kehers@gmail.com'
     }, function(error, body) {
     	// callback should parse response and return an object
-    	return {'name': 'subomi'};
+      return {'name': 'subomi'};
     }).then(function(body) {
-     // callback is called, but then handler does not show its processing, but returns initial api response
+     // callback is called, and it returns a processed that to the then handler
     	expect(body).to.have.property('name')
     	done();
     }).catch(function(error) {
@@ -60,9 +60,9 @@ describe("Paystack Customers", function() {
   it("should get a customer's details", function(done) {
     paystack.customer.get(customer_id)
     .then(function(body){
+      done();
       expect(body).to.have.property('data');
       expect(body.data).to.have.property('id');
-      done();
     })
     .catch(function(error){
       return done(error);
@@ -102,4 +102,5 @@ describe("Paystack Customers", function() {
     });
   });
   */
+
 });

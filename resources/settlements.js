@@ -9,6 +9,6 @@ module.exports = {
   */
   fetch: {
       method: 'get',
-      endpoint: root,
+      path: root,
   }
 };
