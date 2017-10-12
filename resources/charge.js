@@ -43,7 +43,7 @@ module.exports = {
   submitOtp: {
     method: 'post',
     path: [root, '/submit_otp'].join('')
-  }
+  },
 
   /*
    Submit Phone
@@ -51,7 +51,7 @@ module.exports = {
   submitPhone: {
       method: 'post',
       path: [root, '/submit_phone'].join('')
-    },
+  },
 
   /*
    Submit Birthday
@@ -59,7 +59,7 @@ module.exports = {
   submitBirthday: {
     method: 'post',
     path: [root, '/submit_birthday'].join('')
-  }
+  },
   
   /*
    Check charge status
@@ -68,4 +68,5 @@ module.exports = {
     method: 'get',
     path: [root, '/{id}'].join('')
   }
+  
 };

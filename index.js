@@ -28,7 +28,7 @@ var resources = {
   transferrecipient: require('./resources/transferRecipient'),
   transfercontrol: require('./resources/transferControl'),
   bulkCharge: require('./resources/bulkCharge'),
-  charge: require('./resources/charge')
+  charge: require('./resources/charge'),
   controlPanel: require('./resources/controlPanel')
 }
 

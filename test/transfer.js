@@ -12,8 +12,7 @@ describe("Paystack Transfers", function() {
     paystack.transfer.initiate({
       source: 'balance',
       reason: 'Calm down',
-      recipient: 'reference',
-
+      recipient: '',
       amount: 500000
     })
     .then(function(body) {
@@ -87,5 +86,5 @@ describe("Paystack Transfers", function() {
       done();
     });
   });
-});
 
+});

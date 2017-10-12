@@ -10,7 +10,7 @@ module.exports = {
   initiate: {
       method: 'post',
       path: root
-    },
+  },
 
   /*
    List Batches
@@ -18,7 +18,7 @@ module.exports = {
   list: {
       method: 'get',
       path: root
-    },
+  },
 
  /*
   Get Batch
@@ -34,7 +34,7 @@ module.exports = {
   getCharges: {
     method: 'get',
     path: [root, '/{id}/charges'].join('')
-  }
+  },
 
   /*
    Pause Batch
@@ -42,7 +42,7 @@ module.exports = {
   pauseBatch: {
       method: 'get',
       path: [root, '/pause/{id}'].join('')
-    },
+  },
 
   /*
    Resume Batch
