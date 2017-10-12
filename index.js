@@ -4,12 +4,14 @@ Paystack API wrapper
 */
 
 'use strict';
+const process = require('process');
 
 var 
     request = require('request'),
     baseUrl = 'https://api.paystack.co',
     acceptedMethods = [ "get", "post", "put" ],
-    Promise = require('promise')
+    root = 'https://api.paystack.co',
+    promstream = require('./lib/promstream')
 ;
 
 var resources = {
@@ -21,7 +23,13 @@ var resources = {
   subaccount: require('./resources/subaccount'),
   settlements: require('./resources/settlements'),
   misc: require('./resources/misc'),
-  bank: require('./resources/bank')
+  bank: require('./resources/bank'),
+  transfer: require('./resources/transfer'),
+  transferrecipient: require('./resources/transferRecipient'),
+  transfercontrol: require('./resources/transferControl'),
+  bulkCharge: require('.resources/bulkCharge'),
+  charge: require('.resources/charge')
+  controlPanel: require('.resources/controlPanel')
 }
 
 function Paystack(key) {
@@ -138,33 +146,7 @@ Paystack.prototype = {
       if (qs)
         options.qs = qs;
 
-      return new Promise(function (fulfill, reject){
-        request(options, function(error, response, body) {
-          // return body
-          if (error){
-            reject(error);
-          }
-          else if(!body.status){
-            // Error from API??
-            error = body;
-            body = null;
-            reject(error);
-          }
-          else{
-            fulfill(body);
-          }
-        });
-      }).then(function(value) {
-      	if(callback) {
-      		return callback(null, value);
-      	}
-      	return value;
-      }).catch(function(reason) {
-      	if(callback) {
-      		return callback(reason, null);
-      	}
-      	return reason;
-      });
+      return new promstream(options, callback);
     }
   },
 

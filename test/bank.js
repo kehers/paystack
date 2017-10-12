@@ -21,19 +21,14 @@ describe("Paystack Bank Related Functions", function() {
   // Resolve a Bin Card
   it("should resolve an account number", function(done) {
     var queryParams = {
-      account_number: '0022728151',
-      bank_code: '063'
+      account_number: '2009687327',
+      bank_code: '057'
     };
     paystack.bank.resolveAccountNumber(queryParams)
-      .then(function(body){
-        /** uncomment following 3 lines if above details are valid **/
-        // expect(body).to.have.property('data');
-        // expect(body.data).to.have.property('account_number');
-        // expect(body.data).to.have.property('account_name');
-
-        /** comment out following 2 lines if above details are valid **/
-        expect(body).to.have.property('status');
-        expect(body).to.have.property('message');
+      .then(function(body){ 
+        expect(body).to.have.property('data');
+        expect(body.data).to.have.property('account_number');
+        expect(body.data).to.have.property('account_name');
         done();
       })
       .catch(function(error){
@@ -48,6 +43,18 @@ describe("Paystack Bank Related Functions", function() {
         expect(body).to.have.property('data');
         expect(body.data).to.have.property('bin');
         expect(body.data).to.have.property('card_type');
+        done();
+      })
+      .catch(function(error){
+        return done(error);
+      });
+  });
+
+  // Resolve a Bvn 
+  it("should resolve a bvn number", function(done) {
+    paystack.bank.resolveBvn(21212917741)
+      .then(function(body){
+        expect(body.data).to.have.property('bvn');
         done();
       })
       .catch(function(error){

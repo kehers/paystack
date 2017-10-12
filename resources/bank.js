@@ -21,6 +21,11 @@ module.exports = {
     resolveBin: {
         method: 'get',
         path: '/decision/bin/{bin}'
+    }, 
+
+    resolveBvn: {
+        method: 'get',
+        path: [root, '/resolve_bvn/{bvn}'].join('')
     }
 
 }

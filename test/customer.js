@@ -3,7 +3,7 @@ var paystack = require('../index')(process.env.KEY)
   , expect = require('chai').expect
   ;
 
-describe("Paystack Customers", function() {
+describe("Paystack Customers using promises", function() {
 
   var customer_id;
 
@@ -31,7 +31,7 @@ describe("Paystack Customers", function() {
        first_name: 'Opeyemi',
        last_name: 'Obembe',
       email: 'kehers@gmail.com'
-    }, function(error, body) {
+    }, function(body) {
     	// callback should parse response and return an object
       return {'name': 'subomi'};
     }).then(function(body) {
@@ -102,4 +102,5 @@ describe("Paystack Customers", function() {
     });
   });
   */
+
 });
