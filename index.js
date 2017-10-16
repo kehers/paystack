@@ -92,7 +92,7 @@ Paystack.prototype = {
           // Confirm user passed the argument to method
           // and replace in endpoint
 
-          var match, index;
+          var match, index, argType;
           for (var i=0;i<l;i++) {
             match = argsInEndpoint[i].replace(/\W/g, '');
             index = params.args.indexOf(match);
@@ -103,6 +103,10 @@ Paystack.prototype = {
               }
 
               // todo: args[index] must be string or int
+              argType = typeof args[index]
+              if ( argType !==  'string' && argType !==  'number' ) {
+                throw new Error("Resource declaration error -- id MUST be string or number e.g '1' or 1 ");
+              } 
               endpoint = endpoint.replace(new RegExp(argsInEndpoint[i]), args[index]);
               args.splice(index, 1);
             }
