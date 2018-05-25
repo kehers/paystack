@@ -18,7 +18,7 @@ module.exports = {
   */
   disable: {
       method: 'post',
-      endpoint: root,
+      endpoint: root+"/disable",
       params: ['code*', 'token*']
     },
 
@@ -27,7 +27,7 @@ module.exports = {
   */
   enable: {
       method: 'post',
-      endpoint: root,
+      endpoint: root+"/enable",
       params: ['code*', 'token*']
     },
 
