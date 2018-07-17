@@ -17,6 +17,12 @@ module.exports = {
 		method: 'get',
 		endpoint: '/decision/bin/{id}',
 		args: ['id']
-	}
+	},
+
+  resolve_account_number: {
+	  method: 'get',
+    endpoint: '/bank/resolve',
+    params: ['account_number', 'bank_code']
+  }
 	
 }
