@@ -11,6 +11,9 @@ var
     Promise = require('promise')
 ;
 
+// charge resources
+let charge = require('./resources/charge');
+
 var resources = {
   customer: require('./resources/customer'),
   plan: require('./resources/plan'),
@@ -29,6 +32,11 @@ function Paystack(key) {
 
   this.key = key;
   this.importResources();
+
+  //   attach charge to global Paystack
+  charge.$key = key;
+  this.charge = charge;
+
 }
 
 Paystack.prototype = {
