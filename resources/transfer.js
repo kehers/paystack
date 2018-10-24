@@ -5,8 +5,8 @@ var root = '/transfer';
 module.exports = {
 
   /*
-  Create transfer recipient
-  @param: type, name, metadata, account_number, bank_code, currency, description
+  Create transfer
+  @param: source, amount, currency, reason, recipient, reference
   */
   create: {
     method: 'post',
@@ -15,7 +15,7 @@ module.exports = {
   },
 
   /*
-  List transfer recipients
+  List transfers
   */
   list: {
     method: 'get',
@@ -32,8 +32,8 @@ module.exports = {
   },
 
   /*
-  White/Blacklist customer
-  @param: customer, risk_action ('allow' to whitelist or 'deny' to blacklist)
+  Finalize transfer
+  @param: transfer_code, otp
   */
   finalize: {
     method: 'post',
