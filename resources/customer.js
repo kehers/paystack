@@ -9,38 +9,38 @@ module.exports = {
   @param: first_name, last_name, email, phone
   */
   create: {
-      method: 'post',
-      endpoint: root,
-      params: ['first_name', 'last_name', 'email*', 'phone']
-    },
+    method: 'post',
+    endpoint: root,
+    params: ['first_name', 'last_name', 'email*', 'phone']
+  },
 
   /*
   Get customer
   */
   get: {
-      method: 'get',
-      endpoint: [root, '/{id}'].join(''),
-      args: ['id']
+    method: 'get',
+    endpoint: [root, '/{id}'].join(''),
+    args: ['id']
   },
 
   /*
   List customers
   */
   list: {
-      method: 'get',
-      endpoint: root
-    },
+    method: 'get',
+    endpoint: root
+  },
 
   /*
   Update customer
   @param: first_name, last_name, email, phone
   */
   update: {
-      method: 'put',
-      endpoint: [root, '/{id}'].join(''),
-      params: ['first_name', 'last_name', 'email', 'phone'],
-      args: ['id']
-    },
+    method: 'put',
+    endpoint: [root, '/{id}'].join(''),
+    params: ['first_name', 'last_name', 'email', 'phone'],
+    args: ['id']
+  },
 
   /*
   White/Blacklist customer
