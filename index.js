@@ -20,7 +20,7 @@ var resources = {
   subaccount: require('./resources/subaccount'),
   settlements: require('./resources/settlements'),
   misc: require('./resources/misc'),
-  transfer: require('./resources/transfer')
+  transferrecipient: require('./resources/transferrecipient')
 }
 
 function Paystack(key) {
@@ -51,7 +51,7 @@ Paystack.prototype = {
       var body, qs;
 
       // quick fix - method checking
-      var method = params.method in {"get":'', "post":'', "put":''}
+      var method = params.method in {"get":'', "post":'', "put":'', "delete":''}
                  ? params.method
                  : (function () { throw new Error("Method not Allowed! - Resource declaration error") })()
       var endpoint = [root, params.endpoint].join('');
