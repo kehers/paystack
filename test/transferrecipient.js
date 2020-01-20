@@ -35,7 +35,7 @@ var paystack = require('../index')(process.env.KEY)
   
     //List Transfer Recipient
     it("should list transfer recipients", function(done) {
-      paystack.transferrecipient.list_recipients()
+      paystack.transferrecipient.list()
       .then(function(body){
         expect(body).to.have.property('data');
         expect(body.data).to.be.instanceof(Array);

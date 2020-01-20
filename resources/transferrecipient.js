@@ -17,7 +17,7 @@ module.exports = {
   /*
   List transferrecipients
   */
-  list_recipients: {
+  list: {
       method: 'get',
       endpoint: root,
       params: ['perPage', 'page']
@@ -37,9 +37,9 @@ module.exports = {
   /*
   Delete transferrecipient
   */  
- delete: {
-    method: 'delete',
-    endpoint: [root, '/{id}'].join(''),
-    args: ['id']
-  }
+  delete: {
+      method: 'delete',
+      endpoint: [root, '/{id}'].join(''),
+      args: ['id']
+    }
 };
