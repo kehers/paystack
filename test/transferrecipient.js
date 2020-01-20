@@ -60,8 +60,23 @@ var paystack = require('../index')(process.env.KEY)
       return done(error);
     });
   });
+
+  //Delete Transfer Recipient
+  it("should delete a transfer recipient", function(done) {
+    paystack.transfer.update(transfer_id, {
+      name: 'Samuel Jackson'
+    })
+    .then(function(body){
+      expect(body).to.have.property('status');
+      expect(body).to.have.property('message');
+      done();
+    })
+    .catch(function(error){
+      return done(error);
+    });
+  });
 });
 
-//Delete Transfer Recipient
+
 
   
