@@ -15,7 +15,7 @@ module.exports = {
     },
 
   /*
-  List recipients
+  List transferrecipients
   */
   list_recipients: {
       method: 'get',
@@ -24,13 +24,22 @@ module.exports = {
     },
   
   /*
-    Update recipient
-    @params: name, email
+  Update transferrecipient
+  @params: name, email
   */  
   update: {
       method: 'put',
       endpoint: [root, '/{id}'].join(''),
       params: ['name', 'email'],
       args: ['id']
-    }
+    },
+
+  /*
+  Delete transferrecipient
+  */  
+ delete: {
+    method: 'delete',
+    endpoint: [root, '/{id}'].join(''),
+    args: ['id']
+  }
 };

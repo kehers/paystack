@@ -10,7 +10,7 @@ var paystack = require('../index')(process.env.KEY)
 
     //Create Transfer Recipient
     it("should create a new transfer recipient", function(done) {
-      paystack.transfer.create({
+      paystack.transferrecipient.create({
         type: 'nuban',
         name: 'Samuel Oluwatomi',
         account_number: '0172345944',
@@ -35,7 +35,7 @@ var paystack = require('../index')(process.env.KEY)
   
     //List Transfer Recipient
     it("should list transfer recipients", function(done) {
-      paystack.transfer.list_recipients()
+      paystack.transferrecipient.list_recipients()
       .then(function(body){
         expect(body).to.have.property('data');
         expect(body.data).to.be.instanceof(Array);
@@ -48,7 +48,7 @@ var paystack = require('../index')(process.env.KEY)
 
   //Update Transfer Recipient
   it("should update a transfer recipient", function(done) {
-    paystack.transfer.update(transfer_id, {
+    paystack.transferrecipient.update(transfer_id, {
       name: 'Samuel Jackson'
     })
     .then(function(body){
@@ -63,9 +63,7 @@ var paystack = require('../index')(process.env.KEY)
 
   //Delete Transfer Recipient
   it("should delete a transfer recipient", function(done) {
-    paystack.transfer.update(transfer_id, {
-      name: 'Samuel Jackson'
-    })
+    paystack.transferrecipient.delete(transfer_id)
     .then(function(body){
       expect(body).to.have.property('status');
       expect(body).to.have.property('message');
