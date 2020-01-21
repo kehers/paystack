@@ -3,7 +3,6 @@ var paystack = require('../index')(process.env.KEY)
   , expect = require('chai').expect
   ;
 
-
   describe("Paystack Transferrecipients", function() {
 
     var transfer_id, recipient_code;
