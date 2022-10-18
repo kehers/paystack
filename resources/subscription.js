@@ -1,6 +1,8 @@
 'use strict';
 
 var root = '/subscription';
+var roots = '/subscription/{code}';
+
 
 module.exports = {
 
@@ -46,6 +48,16 @@ module.exports = {
   list: {
       method: 'get',
       endpoint: root
-    }
+    },
+
+   /*
+    Update subscription
+    */
+    update: {
+      method: 'get',
+      endpoint:[roots, '/manage/link'].join(''),
+    //  params: ['code*','id_or_subscription_code'],
+      params: ["code"]
+      }
 
 };
