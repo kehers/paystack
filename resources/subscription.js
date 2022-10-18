@@ -50,14 +50,15 @@ module.exports = {
       endpoint: root
     },
 
-   /*
+    /*
     Update subscription
     */
-    update: {
-      method: 'get',
-      endpoint:[roots, '/manage/link'].join(''),
+  update: {
+    method: "get",
+    // endpoint:[root, '/manage/link'].join(''),
+    route: `${route}/{code}/manage/link`,
     //  params: ['code*','id_or_subscription_code'],
-      params: ["code"]
-      }
+    params: ["code"],
+  },
 
 };
