@@ -5,6 +5,7 @@ Paystack API wrapper
 
 'use strict';
 
+
 var
     request = require('request'),
     root = 'https://api.paystack.co',
@@ -19,7 +20,8 @@ var resources = {
   subscription: require('./resources/subscription'),
   subaccount: require('./resources/subaccount'),
   settlements: require('./resources/settlements'),
-  misc: require('./resources/misc')
+  misc: require('./resources/misc'),
+  refund: require('./resources/refund')
 }
 
 function Paystack(key) {
